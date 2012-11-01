@@ -50,13 +50,23 @@ if (!get_cfg_var('short_open_tag')) {
 		die('Pls turn on "short_open_tag" in your php.ini');
 	}
 }
-ini_set('display_errors', '1');   //display errors info
 if (!DEBUG) {
 	error_reporting(0);
 } else {
+	ini_set('display_errors', '1');   //display errors info
 	error_reporting(E_ALL ^E_NOTICE);
 //	error_reporting(E_ALL);
 }
+
+// ini_set('magic_quotes_runtime', false);
+// if (get_magic_quotes_gpc()) {
+// 	function stripslashes_deep($value) {
+// 		return is_array($value) ? array_map('stripslashes_deep', $value) : stripslashes($value);
+// 	}
+// 	$_POST = stripslashes_deep($_POST);
+// 	$_GET = stripslashes_deep($_GET);
+// 	$_COOKIE = stripslashes_deep($_COOKIE);
+// }
 
 /* ---[auto include necessarily library]----- */
 function __autoload($className) {
